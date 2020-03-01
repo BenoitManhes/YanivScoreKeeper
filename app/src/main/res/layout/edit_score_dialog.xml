@@ -1,0 +1,54 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:orientation="horizontal"
+    android:layout_gravity="center"
+    android:gravity="center_vertical"
+    tools:ignore="ExtraText">
+
+
+
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_margin="15dp"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        tools:ignore="ExtraText">
+
+
+    <Button
+        android:id="@+id/buttonMoins"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center_horizontal"
+        android:text="-"
+        android:textSize="30dp" />
+
+    <Button
+        android:id="@+id/buttonPlus"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:text="+"
+        android:textSize="30dp"/>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/editScore"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_weight="5"
+        android:ems="10"
+        android:inputType="number" />
+
+
+</LinearLayout>

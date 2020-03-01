@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="rouge">#f90505</color>
+    <color name="white">#ffffff</color>
+    <color name="vert">#5ac805</color>
+    <color name="bleu">#0526ff</color>
+    <color name="black">#000000</color>
+    <color name="grey">#bebebe</color>
+    <color name="blanc_trans">#28ffffff</color>
+
+    <color name="rouge_fonce">#8e2828</color>
+    <color name="vert_fond">#2d702d</color>
+    <color name="vert_fonce">#143314</color>
+
+    <color name="vert1">#bfce10</color>
+    <color name="vert2">#61ae35</color>
+    <color name="vert3">#019542</color>
+    <color name="vert4">#009579</color>
+    <color name="bleu1">#0199ab</color>
+    <color name="bleu2">#2298d0</color>
+    <color name="bleu3">#117eb8</color>
+    <color name="bleu4">#08589d</color>
+    <color name="bleu5">#2f2e7c</color>
+    <color name="violet1">#78217f</color>
+    <color name="violet2">#ae1681</color>
+    <color name="rose1">#e20a7c</color>
+    <color name="rose2">#d4035e</color>
+    <color name="rouge1">#e2043f</color>
+    <color name="rouge2">#d90f17</color>
+    <color name="orange1">#e6730b</color>
+    <color name="jaune1">#f6b210</color>
+    <color name="jaune2">#fae91f</color>
+
+</resources>

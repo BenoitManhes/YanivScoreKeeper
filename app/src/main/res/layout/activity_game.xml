@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.GameActivity">
+
+    <android.support.design.widget.AppBarLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/vert_fonce"
+    android:theme="@style/AppTheme.AppBarOverlay">
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:id="@+id/MyTabs"
+        app:tabGravity="center"
+        app:tabMode="fixed"
+        app:tabIndicatorColor="@color/white"
+        app:tabSelectedTextColor="@color/white"
+        android:layout_height="40dp"/>
+
+</android.support.design.widget.AppBarLayout>
+
+    <Button
+        android:id="@+id/buttonYaniv"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="20dp"
+        android:text=""
+        android:background="@drawable/bouton_yaniv"
+        android:onClick="onClickYaniv"/>
+
+    <include layout="@layout/content_game" />
+
+
+
+</android.support.design.widget.CoordinatorLayout>

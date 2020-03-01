@@ -1,0 +1,31 @@
+<RelativeLayout
+    android:layout_width="100dp"
+    android:layout_height="160dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="5dp">
+
+    <ImageView
+        android:id="@+id/fond_carte"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"/>
+
+    <ImageView
+        android:id="@+id/image_carte"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="25dp"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/carte_textView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="5dp"
+        android:gravity="center_vertical"
+        android:textSize="16dp"
+        android:textColor="@color/white"
+        android:text="Pseudo" />
+
+</RelativeLayout>
