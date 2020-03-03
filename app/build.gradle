@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
+apply from: '../dependencies.gradle'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.studiobeu.yaniv"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
