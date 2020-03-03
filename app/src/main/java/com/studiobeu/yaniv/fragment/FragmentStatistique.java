@@ -1,10 +1,8 @@
 package com.studiobeu.yaniv.fragment;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,8 +13,6 @@ import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.activity.GameActivity;
-
-import java.util.ArrayList;
 
 public class FragmentStatistique extends Fragment {
 

@@ -1,26 +1,21 @@
 package com.studiobeu.yaniv.adapter;
 
 import android.app.AlertDialog;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.studiobeu.yaniv.R;
-import com.studiobeu.yaniv.activity.GameActivity;
-import com.studiobeu.yaniv.activity.PlayerSelect;
 import com.studiobeu.yaniv.model.Parametre;
 import com.studiobeu.yaniv.model.Player;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.MyViewHolder> {
 
