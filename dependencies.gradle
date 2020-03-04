@@ -1,0 +1,9 @@
+ext.versions = [
+        //Project
+        minSdk                  : 21,
+        compileSdk              : 29,
+
+        //UI
+        androidx                : '1.0.0',
+        butterKnife             : '10.2.0',
+]

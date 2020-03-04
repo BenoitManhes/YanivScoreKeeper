@@ -3,9 +3,9 @@ package com.studiobeu.yaniv.activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,17 +23,27 @@ import com.studiobeu.yaniv.model.Player;
 import java.util.ArrayList;
 import java.util.Vector;
 
-import static java.lang.System.out;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class PlayerSelect extends AppCompatActivity {
 
     public static ArrayList<Player> playerSelected;
-    GridLayout mGridLayout;
-    Vector<CartePlayer> vectCarte;
 
-    private Switch mSwitch;
-    private EditText mEditText;
-    private TextView mTextView;
+    @BindView(R.id.gridLayout)
+    GridLayout mGridLayout;
+
+    @BindView(R.id.switchMode)
+    Switch mSwitch;
+
+    @BindView(R.id.editLimite)
+    EditText mEditText;
+
+    @BindView(R.id.textLimite)
+    TextView mTextView;
+
+    Vector<CartePlayer> vectCarte;
 
     public static String BUDDLE_EXTRA_LIMITE = "limite";
     public static String BUDDLE_EXTRA_NEW = "new game";
@@ -44,16 +54,16 @@ public class PlayerSelect extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_player_select);
 
+        ButterKnife.bind(this);
+
         playerSelected = new ArrayList<>();
+    }
 
-        mGridLayout = ((GridLayout) findViewById(R.id.gridLayout));
-
-        mSwitch = (Switch) findViewById(R.id.switchMode);
-        mEditText = (EditText) findViewById(R.id.editLimite);
-        mTextView = (TextView) findViewById(R.id.textLimite);
+    @Override
+    protected void onStart(){
+        super.onStart();
 
         mSwitch.setChecked(false);
-
         initGridLayout();
     }
 
@@ -63,9 +73,8 @@ public class PlayerSelect extends AppCompatActivity {
         checkNewPlayer();
     }
 
-
-
-    public void onClickSwitch(View view){
+    @OnClick(R.id.switchMode)
+    public void onSwitch(View view){
         if (mSwitch.isChecked()){
             mTextView.setEnabled(false);
             mEditText.setEnabled(false);
@@ -74,6 +83,8 @@ public class PlayerSelect extends AppCompatActivity {
             mEditText.setEnabled(true);
         }
     }
+
+    @OnClick(R.id.start)
     public void onClickStart(View view){
         int limite = (int) Integer.parseInt(mEditText.getText().toString());
         if(limite<LIMITE_MIN && mSwitch.isChecked()){
@@ -91,6 +102,7 @@ public class PlayerSelect extends AppCompatActivity {
 
     }
 
+    @OnClick(R.id.add)
     public void onClickAdd(View view){
         Intent intent = new Intent(PlayerSelect.this, EditPlayerActivity.class);
         startActivity(intent);
@@ -114,7 +126,7 @@ public class PlayerSelect extends AppCompatActivity {
         alert.show();*/
     }
 
-    public void initGridLayout(){
+    private void initGridLayout(){
         vectCarte = new Vector<>();
 
         for(final Player player : MainActivity.allPlayers) {
@@ -122,7 +134,7 @@ public class PlayerSelect extends AppCompatActivity {
         }
     }
 
-    public void addCarte(Player player, boolean select){
+    private void addCarte(Player player, boolean select){
         final View v = PlayerSelect.this.getLayoutInflater().inflate(R.layout.carte_player, null);
         v.setLayoutParams(new ViewGroup.LayoutParams(200, 300));
 

@@ -1,6 +1,6 @@
 package com.studiobeu.yaniv.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -12,10 +12,22 @@ import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.model.Parametre;
 import com.studiobeu.yaniv.model.Player;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class YanivActivity extends AppCompatActivity {
 
-    TextView mTextYanivName, mTextYanivScore;
+    @BindView(R.id.textYanivName)
+    TextView mTextYanivName;
+
+    @BindView(R.id.textYanivScore)
+    TextView mTextYanivScore;
+
+    @BindView(R.id.imageYanivPlayer)
     ImageView mImageYaniv;
+
+    @BindView(R.id.editTextYaniv)
     EditText mEditText;
 
     private int indice;
@@ -26,18 +38,15 @@ public class YanivActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_yaniv);
-
-        mTextYanivName = ((TextView) findViewById(R.id.textYanivName));
-        mTextYanivScore = ((TextView) findViewById(R.id.textYanivScore));
-        mImageYaniv = ((ImageView) findViewById(R.id.imageYanivPlayer));
-        mEditText = ((EditText) findViewById(R.id.editTextYaniv));
+        ButterKnife.bind(this);
 
         indice = 0;
         max = GameActivity.partie.getListPlayers().size();
         refreshData();
     }
 
-    public void onClickInputScore(View view){
+    @OnClick(R.id.activityYanivBtInput)
+    public void inputScore(View view){
         try {
             int score = Integer.parseInt(mEditText.getText().toString());
             if (score<0) Toast.makeText(view.getContext(),"Entrez un nombre positif",Toast.LENGTH_SHORT).show();
@@ -48,11 +57,13 @@ public class YanivActivity extends AppCompatActivity {
 
     }
 
-    public void onClickYanivScore(View view){
+    @OnClick(R.id.activityYanivBtYaniv)
+    public void yaniv(View view){
         enterScore(0);
     }
 
-    public void onClickAsafScore(View view){
+    @OnClick(R.id.activityYanivBtAsaf)
+    public void asafScore(View view){
         try {
             int score = Integer.parseInt(mEditText.getText().toString());
             if (score<0) Toast.makeText(view.getContext(),"Entrez un nombre positif",Toast.LENGTH_SHORT).show();
@@ -62,7 +73,7 @@ public class YanivActivity extends AppCompatActivity {
         }
     }
 
-    public void refreshData(){
+    private void refreshData(){
         p = GameActivity.partie.getListPlayers().get(indice);
         mTextYanivName.setText(p.getName());
         mTextYanivScore.setText(p.getCurrentScore()+"");
@@ -70,7 +81,7 @@ public class YanivActivity extends AppCompatActivity {
         mEditText.setText("");
     }
 
-    public void enterScore(int score){
+    private void enterScore(int score){
         // stat
         if(score == 0) p.incrementeManche(true);
         else p.incrementeManche(false);

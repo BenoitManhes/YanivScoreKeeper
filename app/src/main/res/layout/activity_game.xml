@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.GameActivity">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/vert_fonce"
     android:theme="@style/AppTheme.AppBarOverlay">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
         android:layout_width="match_parent"
         android:id="@+id/MyTabs"
         app:tabGravity="center"
@@ -21,7 +21,7 @@
         app:tabSelectedTextColor="@color/white"
         android:layout_height="40dp"/>
 
-</android.support.design.widget.AppBarLayout>
+</com.google.android.material.appbar.AppBarLayout>
 
     <Button
         android:id="@+id/buttonYaniv"
@@ -32,11 +32,10 @@
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="20dp"
         android:text=""
-        android:background="@drawable/bouton_yaniv"
-        android:onClick="onClickYaniv"/>
+        android:background="@drawable/bouton_yaniv"/>
 
     <include layout="@layout/content_game" />
 
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -7,7 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.provider.MediaStore;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -19,30 +19,34 @@ import com.studiobeu.yaniv.model.Player;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class EditPlayerActivity extends AppCompatActivity {
+
+    @BindView(R.id.imageEditPlayer)
+    ImageView profilImage;
+
+    @BindView(R.id.imageColorEditPlayer)
+    ImageView colorImage;
+
+    @BindView(R.id.editTextEditPlayer)
+    EditText editName;
 
     private static final int SELECT_PICTURE = 0;
     private Player player;
     private Bitmap bitmap;
     private int color;
 
-    private ImageView profilImage,colorImage;
-    private EditText editName;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_player);
-
-        profilImage = ( (ImageView) findViewById(R.id.imageEditPlayer));
-        colorImage = ((ImageView) findViewById(R.id.imageColorEditPlayer));
-        editName = ((EditText) findViewById(R.id.editTextEditPlayer));
+        ButterKnife.bind(this);
 
         player = new Player();
-
         initPlayer();
-
-
     }
 
     @Override
@@ -66,6 +70,30 @@ public class EditPlayerActivity extends AppCompatActivity {
         }
     }
 
+    @OnClick(R.id.activity_edit_player_button_import)
+    public void importImage(View view) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), SELECT_PICTURE);
+    }
+
+    @OnClick(R.id.activity_edit_player_button_create)
+    public void createPlayer(View view){
+        player.setName(editName.getText().toString());
+        player.setAdressImage(bitmap);
+        player.setColor(color);
+        if(!MainActivity.allPlayers.contains(player)){
+            MainActivity.allPlayers.add(player);
+        }
+        finish();
+    }
+
+    @OnClick(R.id.activity_edit_player_button_cancel)
+    public void cancel(View view){
+        finish();
+    }
+
     private Bitmap getPath(Uri uri) {
 
         String[] projection = {MediaStore.Images.Media.DATA};
@@ -81,14 +109,6 @@ public class EditPlayerActivity extends AppCompatActivity {
         return bitmap;
     }
 
-    public void importImage(View view) {
-
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI), SELECT_PICTURE);
-    }
-
     private void initPlayer() {
         bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.bob);
         player.setAdressImage(bitmap);
@@ -99,22 +119,7 @@ public class EditPlayerActivity extends AppCompatActivity {
 
     }
 
-    public void changeColor(View view){
+    private void changeColor(View view){
 
     }
-
-    public void onClickCreate(View view){
-        player.setName(editName.getText().toString());
-        player.setAdressImage(bitmap);
-        player.setColor(color);
-        if(!MainActivity.allPlayers.contains(player)){
-            MainActivity.allPlayers.add(player);
-        }
-        finish();
-    }
-
-    public void onClickCancel(View view){
-        finish();
-    }
-
 }

@@ -67,6 +67,7 @@
         android:inputType="number" />
 
     <Button
+        android:id="@+id/activityYanivBtInput"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentTop="true"
@@ -74,7 +75,6 @@
         android:layout_marginTop="20dp"
         android:layout_marginHorizontal="25dp"
         android:layout_marginBottom="5dp"
-        android:onClick="onClickInputScore"
         android:background="@color/vert_fond"
         android:text="Input" />
 
@@ -90,21 +90,21 @@
 
 
         <Button
+            android:id="@+id/activityYanivBtYaniv"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:layout_marginRight="3dp"
             android:background="@color/rouge_fonce"
-            android:onClick="onClickYanivScore"
             android:text="Yaniv +0" />
 
         <Button
+            android:id="@+id/activityYanivBtAsaf"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:layout_marginLeft="3dp"
             android:background="@color/rouge_fonce"
-            android:onClick="onClickAsafScore"
             android:text="Asaf +30" />
     </LinearLayout>
 

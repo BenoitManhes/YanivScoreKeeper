@@ -1,10 +1,8 @@
 package com.studiobeu.yaniv.fragment;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +14,12 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.activity.GameActivity;
 
-import java.util.ArrayList;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class FragmentStatistique extends Fragment {
 
+    @BindView(R.id.graph)
     GraphView graph;
     //Constructor default
     public FragmentStatistique(){ };
@@ -27,14 +27,13 @@ public class FragmentStatistique extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_statistique, container, false);
-
+        ButterKnife.bind(this,view);
         //Every you want add some VIEW you need add findViewId with the Inflater
 
         //Example
         /*
         TextView ExTV = (TextView)PageOne.findViewById(R.id.Something ID)
          */
-        graph = (GraphView) view.findViewById(R.id.graph);
         parametreGraph();
         refreshData();
 
@@ -49,7 +48,7 @@ public class FragmentStatistique extends Fragment {
 
     /** methode */
 
-    public void refreshData(){
+    private void refreshData(){
         graph.removeAllSeries();
         for (int i =0; i < GameActivity.partie.getDataGraph().size(); i++) {
             LineGraphSeries<DataPoint> serie = GameActivity.partie.getDataGraph().get(i);

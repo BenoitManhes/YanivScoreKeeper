@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +14,9 @@ import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.model.Player;
 
 import java.util.ArrayList;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 import static com.studiobeu.yaniv.activity.PlayerSelect.BUDDLE_EXTRA_NEW;
 
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
         mPreferences = getSharedPreferences(PREF_MAIN_PREFERENCES, Context.MODE_PRIVATE);
         initColor();
@@ -44,29 +48,32 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public void onClickNew(View view){
+    @OnClick(R.id.newGame)
+    public void newGame(View view){
         Intent intent = new Intent(MainActivity.this, PlayerSelect.class);
         startActivity(intent);
     }
 
-    public void onClickResume(View view){
+    @OnClick(R.id.resume)
+    public void resumeLastGame(View view){
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         intent.putExtra(BUDDLE_EXTRA_NEW,false);
         startActivity(intent);
     }
 
-    public void onClickAbout(View view){
+    @OnClick(R.id.about)
+    public void showAbout(View view){
 
     }
 
-    public void saveAllPLayers(){
+    private void saveAllPLayers(){
         Gson gson = new Gson();
         mPreferences.edit()
                 .putString(PREF_KEY_LISTPLAYERS,gson.toJson(allPlayers))
                 .apply();
     }
 
-    public void loadAllPlayers(){
+    private void loadAllPlayers(){
         allPlayers = new ArrayList<>();
         Gson gson = new Gson();
 
