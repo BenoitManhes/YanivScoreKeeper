@@ -8,5 +8,8 @@ ext.versions = [
         butterKnife             : '10.2.0',
 
         // Database
-        room                    : '2.2.4'
+        room                    : '2.2.4',
+
+        // Injection
+        dagger                  : '2.24'
 ]

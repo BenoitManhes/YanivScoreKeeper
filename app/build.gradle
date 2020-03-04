@@ -47,4 +47,8 @@ dependencies {
     implementation "androidx.room:room-runtime:$versions.room"
     annotationProcessor "androidx.room:room-compiler:$versions.room"
 
+    //Injection
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
+
 }
