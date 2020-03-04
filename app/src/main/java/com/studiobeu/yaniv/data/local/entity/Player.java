@@ -36,8 +36,8 @@ public class Player {
     @ColumnInfo(name = CI_NB_TOTAL_PARTIE_WIN)
     private int nbPartieWin;
 
-    @ColumnInfo(name = CI_ICON)
-    private Bitmap icon;
+//    @ColumnInfo(name = CI_ICON)
+//    private Bitmap icon;
 
     @ColumnInfo(name = CI_COLOR)
     private int color;
