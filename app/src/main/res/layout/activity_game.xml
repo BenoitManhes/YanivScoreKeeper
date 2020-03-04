@@ -32,8 +32,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginLeft="20dp"
         android:text=""
-        android:background="@drawable/bouton_yaniv"
-        android:onClick="onClickYaniv"/>
+        android:background="@drawable/bouton_yaniv"/>
 
     <include layout="@layout/content_game" />
 

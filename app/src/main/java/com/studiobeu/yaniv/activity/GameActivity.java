@@ -27,12 +27,17 @@ import com.studiobeu.yaniv.model.Partie;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 public class GameActivity extends AppCompatActivity {
 
+    @BindView(R.id.MyTabs)
     TabLayout MyTabs;
-    ViewPager MyPage;
 
-    Button mYanivButton;
+    @BindView(R.id.MyPage)
+    ViewPager MyPage;
 
     public static Partie partie = new Partie();
 
@@ -40,10 +45,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
-        MyTabs = (TabLayout)findViewById(R.id.MyTabs);
-        MyPage = (ViewPager)findViewById(R.id.MyPage);
-        mYanivButton = ((Button) findViewById(R.id.buttonYaniv));
+        ButterKnife.bind(this);
 
         MyTabs.setupWithViewPager(MyPage);
         SetUpViewPager(MyPage);
@@ -63,7 +65,8 @@ public class GameActivity extends AppCompatActivity {
         super.onStop();
     }
 
-    public void onClickYaniv(View view){
+    @OnClick(R.id.buttonYaniv)
+    public void onYaniv(View view){
         Intent intent = new Intent(GameActivity.this, YanivActivity.class);
         startActivity(intent);
     }

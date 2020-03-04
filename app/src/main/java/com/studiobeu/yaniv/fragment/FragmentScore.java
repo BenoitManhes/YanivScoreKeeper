@@ -15,10 +15,15 @@ import com.studiobeu.yaniv.model.Player;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class FragmentScore extends Fragment {
 
+    @BindView(R.id.listScore)
     RecyclerView rv;
+
     ScoreAdapter mScoreAdapter;
     ArrayList<Player> list;
     ArrayList<ArrayList<Integer>> tableau;
@@ -43,9 +48,9 @@ public class FragmentScore extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_fragment_score, container, false);
+        ButterKnife.bind(this,view);
 
         list = new ArrayList<>();
-        rv = (RecyclerView) view.findViewById(R.id.listScore);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
         loadPlayer();
