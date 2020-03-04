@@ -91,13 +91,13 @@ public class Player {
         this.nbPartieWin = nbPartieWin;
     }
 
-    public Bitmap getIcon() {
-        return icon;
-    }
-
-    public void setIcon(Bitmap icon) {
-        this.icon = icon;
-    }
+//    public Bitmap getIcon() {
+//        return icon;
+//    }
+//
+//    public void setIcon(Bitmap icon) {
+//        this.icon = icon;
+//    }
 
     public int getColor() {
         return color;
