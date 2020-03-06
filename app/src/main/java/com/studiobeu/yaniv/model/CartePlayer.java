@@ -3,7 +3,7 @@ package com.studiobeu.yaniv.model;
 import android.widget.ImageView;
 
 import com.studiobeu.yaniv.R;
-import com.studiobeu.yaniv.activity.PlayerSelect;
+import com.studiobeu.yaniv.ui.activity.PlayerSelect;
 
 public class CartePlayer {
 

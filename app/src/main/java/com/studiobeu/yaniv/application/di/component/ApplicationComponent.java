@@ -3,6 +3,7 @@ package com.studiobeu.yaniv.injection.component;
 import android.content.Context;
 
 import com.studiobeu.yaniv.data.DataManager;
+import com.studiobeu.yaniv.data.local.PreferenceService;
 import com.studiobeu.yaniv.injection.ApplicationContext;
 import com.studiobeu.yaniv.injection.module.ApplicationModule;
 
@@ -18,5 +19,7 @@ public interface ApplicationComponent {
 
     @ApplicationContext
     Context context();
+
+    PreferenceService preferenceService();
 
 }

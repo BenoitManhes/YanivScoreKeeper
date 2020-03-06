@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     android:background="@color/vert_fonce"
-    tools:context=".activity.YanivActivity">
+    tools:context=".ui.activity.YanivActivity">
 
 <TextView
     android:layout_width="wrap_content"

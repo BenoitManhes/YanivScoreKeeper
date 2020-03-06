@@ -3,8 +3,9 @@ package com.studiobeu.yaniv.injection.module;
 import android.app.Application;
 import android.content.Context;
 
+import com.studiobeu.yaniv.data.local.PreferenceService;
 import com.studiobeu.yaniv.injection.ApplicationContext;
-import com.studiobeu.yaniv.ui.Global;
+import com.studiobeu.yaniv.YanivApplication;
 
 import javax.inject.Singleton;
 
@@ -18,9 +19,9 @@ import dagger.Provides;
  */
 @Module
 public class ApplicationModule {
-    protected final Global mApplication;
+    protected final YanivApplication mApplication;
 
-    public ApplicationModule(Global application) {
+    public ApplicationModule(YanivApplication application) {
         mApplication = application;
     }
 
@@ -34,6 +35,12 @@ public class ApplicationModule {
     @ApplicationContext
     Context provideContext() {
         return mApplication;
+    }
+
+    @Singleton
+    @Provides
+    PreferenceService providePreferenceManager(Context context){
+        return new PreferenceService(context);
     }
 
 }

@@ -1,14 +1,9 @@
 package com.studiobeu.yaniv.model;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
 
-import com.studiobeu.yaniv.R;
-import com.studiobeu.yaniv.activity.MainActivity;
-import com.studiobeu.yaniv.activity.PlayerSelect;
-
-import java.util.Random;
+import com.studiobeu.yaniv.ui.activity.MainActivity;
+import com.studiobeu.yaniv.ui.activity.PlayerSelect;
 
 public class Player {
 

@@ -3,7 +3,7 @@ package com.studiobeu.yaniv.data;
 
 import android.content.Context;
 
-import com.studiobeu.yaniv.data.local.PreferenceHelper;
+import com.studiobeu.yaniv.data.local.PreferenceService;
 import com.studiobeu.yaniv.data.local.database.AppDataBase;
 
 import javax.inject.Inject;
@@ -13,13 +13,17 @@ import javax.inject.Singleton;
 public class DataManager {
 
     private final AppDataBase mAppDataBase;
-    private final PreferenceHelper mPreferenceHelper;
+    private final PreferenceService mPreferenceService;
     private final Context mContext;
 
     @Inject
-    public DataManager( Context context, AppDataBase appDataBase, PreferenceHelper preferenceHelper){
+    public DataManager( Context context, AppDataBase appDataBase, PreferenceService preferenceService){
         this.mContext = context;
         this.mAppDataBase = appDataBase;
-        this.mPreferenceHelper = preferenceHelper;
+        this.mPreferenceService = preferenceService;
+    }
+
+    public PreferenceService getPreferenceHelper() {
+        return mPreferenceService;
     }
 }
