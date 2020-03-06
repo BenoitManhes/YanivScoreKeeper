@@ -1,9 +1,9 @@
-package com.studiobeu.yaniv.injection.module;
+package com.studiobeu.yaniv.application.di.module;
 
 import android.app.Activity;
 import android.content.Context;
 
-import com.studiobeu.yaniv.injection.ActivityContext;
+import com.studiobeu.yaniv.application.di.ActivityContext;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.injection;
+package com.studiobeu.yaniv.application.di;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

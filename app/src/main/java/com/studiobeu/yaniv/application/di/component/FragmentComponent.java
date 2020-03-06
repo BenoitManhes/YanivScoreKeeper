@@ -1,8 +1,8 @@
-package com.studiobeu.yaniv.injection.component;
+package com.studiobeu.yaniv.application.di.component;
 
 
-import com.studiobeu.yaniv.injection.PerFragment;
-import com.studiobeu.yaniv.injection.module.FragmentModule;
+import com.studiobeu.yaniv.application.di.PerFragment;
+import com.studiobeu.yaniv.application.di.module.FragmentModule;
 
 import dagger.Component;
 

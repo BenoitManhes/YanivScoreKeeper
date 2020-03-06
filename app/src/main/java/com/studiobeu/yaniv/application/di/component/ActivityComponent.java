@@ -1,12 +1,12 @@
-package com.studiobeu.yaniv.injection.component;
+package com.studiobeu.yaniv.application.di.component;
 
-import com.studiobeu.yaniv.activity.EditPlayerActivity;
-import com.studiobeu.yaniv.activity.GameActivity;
-import com.studiobeu.yaniv.activity.MainActivity;
-import com.studiobeu.yaniv.activity.PlayerSelect;
-import com.studiobeu.yaniv.activity.YanivActivity;
-import com.studiobeu.yaniv.injection.PerActivity;
-import com.studiobeu.yaniv.injection.module.ActivityModule;
+import com.studiobeu.yaniv.ui.activity.EditPlayerActivity;
+import com.studiobeu.yaniv.ui.activity.GameActivity;
+import com.studiobeu.yaniv.ui.activity.MainActivity;
+import com.studiobeu.yaniv.ui.activity.PlayerSelect;
+import com.studiobeu.yaniv.ui.activity.YanivActivity;
+import com.studiobeu.yaniv.application.di.PerActivity;
+import com.studiobeu.yaniv.application.di.module.ActivityModule;
 
 import dagger.Component;
 
