@@ -1,9 +1,9 @@
-package com.studiobeu.yaniv.activity;
+package com.studiobeu.yaniv.ui.activity;
 
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.adapter;
+package com.studiobeu.yaniv.ui.adapter;
 
 import android.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;

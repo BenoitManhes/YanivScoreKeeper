@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.fragment;
+package com.studiobeu.yaniv.ui.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.studiobeu.yaniv.R;
-import com.studiobeu.yaniv.activity.GameActivity;
-import com.studiobeu.yaniv.adapter.ScoreAdapter;
+import com.studiobeu.yaniv.ui.activity.GameActivity;
+import com.studiobeu.yaniv.ui.adapter.ScoreAdapter;
 import com.studiobeu.yaniv.model.Player;
 
 import java.util.ArrayList;

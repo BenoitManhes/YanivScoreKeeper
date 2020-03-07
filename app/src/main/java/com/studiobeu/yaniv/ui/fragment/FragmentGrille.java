@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.fragment;
+package com.studiobeu.yaniv.ui.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;

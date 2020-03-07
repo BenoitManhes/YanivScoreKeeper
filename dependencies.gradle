@@ -6,4 +6,10 @@ ext.versions = [
         //UI
         androidx                : '1.0.0',
         butterKnife             : '10.2.0',
+
+        // Database
+        room                    : '2.2.4',
+
+        // Injection
+        dagger                  : '2.24'
 ]

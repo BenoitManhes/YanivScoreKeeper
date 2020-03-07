@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.activity;
+package com.studiobeu.yaniv.ui.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;

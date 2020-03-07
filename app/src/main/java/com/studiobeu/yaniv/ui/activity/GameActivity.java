@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.activity;
+package com.studiobeu.yaniv.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,18 +11,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
-import android.widget.Button;
 
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.studiobeu.yaniv.R;
-import com.studiobeu.yaniv.fragment.FragmentGrille;
-import com.studiobeu.yaniv.fragment.FragmentScore;
-import com.studiobeu.yaniv.fragment.FragmentStatistique;
+import com.studiobeu.yaniv.ui.fragment.FragmentGrille;
+import com.studiobeu.yaniv.ui.fragment.FragmentScore;
+import com.studiobeu.yaniv.ui.fragment.FragmentStatistique;
 import com.studiobeu.yaniv.model.Partie;
 
 import java.util.ArrayList;
