@@ -43,7 +43,7 @@ public class BaseActivity extends AppCompatActivity {
         if (mActivityComponent == null) {
             mActivityComponent = DaggerActivityComponent.builder()
                     .activityModule(new ActivityModule(this))
-                    .applicationComponent(YanivApp.get(this).getApplicationComponent())
+                    .applicationComponent(YanivApp.getApp(this).getApplicationComponent())
                     .build();
         }
         return mActivityComponent;

@@ -14,7 +14,7 @@ public class BaseFragment extends Fragment {
     public FragmentComponent getFragmentComponent() {
         if (mFragmentComponent == null) {
             mFragmentComponent = DaggerFragmentComponent.builder()
-                    .applicationComponent(YanivApp.get(getActivity()).getApplicationComponent())
+                    .applicationComponent(YanivApp.getApp(getActivity()).getApplicationComponent())
                     .fragmentModule(new FragmentModule(getActivity()))
                     .build();
         }

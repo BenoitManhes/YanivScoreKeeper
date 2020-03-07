@@ -11,27 +11,23 @@ import com.studiobeu.yaniv.application.di.module.ApplicationModule;
 /**
  * YanivApp application
  */
-public class YanivApp extends Application {
+public class YanivApp extends Application{
 
     private ApplicationComponent component;
-    private static YanivApp singleton;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        singleton = this;
-
         initDagger();
 
     }
 
-    public static YanivApp getInstance() {
-        return singleton;
+    public YanivApp(){
+        super();
     }
 
-
     /**
-     * get the dagger component
+     * getApp the dagger component
      * @return the component
      */
     public ApplicationComponent getApplicationComponent() {
@@ -39,7 +35,7 @@ public class YanivApp extends Application {
     }
 
 
-    public static YanivApp get(Context context) {
+    public static YanivApp getApp(Context context) {
         return (YanivApp) context.getApplicationContext();
     }
 
@@ -48,6 +44,7 @@ public class YanivApp extends Application {
             this.component = DaggerApplicationComponent.builder()
                     .applicationModule(new ApplicationModule(this))
                     .build();
+            component.inject(this);
         }
     }
 

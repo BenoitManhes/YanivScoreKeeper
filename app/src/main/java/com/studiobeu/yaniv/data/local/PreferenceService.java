@@ -13,10 +13,10 @@ public class PreferenceService {
 
     private static final String PREF_FILE_NAME = "yaniv_pref_file";
 
-    private final SharedPreferences mPref;
+    private final SharedPreferences preferences;
 
     @Inject
     public PreferenceService(@ApplicationContext Context context) {
-        mPref = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
+        this.preferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
     }
 }
