@@ -19,6 +19,7 @@ import dagger.Provides;
  */
 @Module
 public class ApplicationModule {
+
     protected final YanivApp mApplication;
 
     public ApplicationModule(YanivApp application) {
