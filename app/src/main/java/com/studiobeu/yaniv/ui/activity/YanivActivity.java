@@ -1,6 +1,5 @@
 package com.studiobeu.yaniv.ui.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -9,14 +8,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.studiobeu.yaniv.R;
+import com.studiobeu.yaniv.data.local.entity.Player;
 import com.studiobeu.yaniv.model.Parametre;
-import com.studiobeu.yaniv.model.Player;
+import com.studiobeu.yaniv.ui.base.BaseActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class YanivActivity extends AppCompatActivity {
+public class YanivActivity extends BaseActivity {
 
     @BindView(R.id.textYanivName)
     TextView mTextYanivName;
@@ -37,6 +37,7 @@ public class YanivActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
         setContentView(R.layout.activity_yaniv);
         ButterKnife.bind(this);
 
@@ -77,7 +78,7 @@ public class YanivActivity extends AppCompatActivity {
         p = GameActivity.partie.getListPlayers().get(indice);
         mTextYanivName.setText(p.getName());
         mTextYanivScore.setText(p.getCurrentScore()+"");
-        mImageYaniv.setImageBitmap(p.geticon());
+//        mImageYaniv.setImageBitmap(p.geticon());
         mEditText.setText("");
     }
 

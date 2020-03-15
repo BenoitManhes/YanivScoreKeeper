@@ -3,6 +3,7 @@ package com.studiobeu.yaniv.model;
 import android.widget.ImageView;
 
 import com.studiobeu.yaniv.R;
+import com.studiobeu.yaniv.data.local.entity.Player;
 import com.studiobeu.yaniv.ui.activity.PlayerSelect;
 
 public class CartePlayer {
@@ -33,7 +34,7 @@ public class CartePlayer {
         this.select = !this.select;
         if (this.select) {
             this.imageFond.setBackgroundResource(this.imageSelectAdress);
-            this.imagePlayer.setImageBitmap(this.player.geticon());
+//            this.imagePlayer.setImageBitmap(this.player.geticon());
             if(!PlayerSelect.playerSelected.contains(player)) PlayerSelect.playerSelected.add(player);
 
         }else {

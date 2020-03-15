@@ -46,9 +46,15 @@ dependencies {
     // Database
     implementation "androidx.room:room-runtime:$versions.room"
     annotationProcessor "androidx.room:room-compiler:$versions.room"
+    // RxJava with Room
+    implementation "android.arch.persistence.room:rxjava2:1.1.1"
 
     //Injection
     implementation "com.google.dagger:dagger:$versions.dagger"
     annotationProcessor "com.google.dagger:dagger-compiler:$versions.dagger"
+
+    //RxJava2
+    implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
+    implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
 
 }

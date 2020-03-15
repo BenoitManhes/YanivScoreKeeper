@@ -5,8 +5,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -17,17 +17,28 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.studiobeu.yaniv.R;
+import com.studiobeu.yaniv.data.local.RoomService;
+import com.studiobeu.yaniv.data.local.entity.Player;
 import com.studiobeu.yaniv.model.CartePlayer;
-import com.studiobeu.yaniv.model.Player;
+import com.studiobeu.yaniv.ui.base.BaseActivity;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.observers.DisposableMaybeObserver;
+import io.reactivex.schedulers.Schedulers;
 
-public class PlayerSelect extends AppCompatActivity {
+public class PlayerSelect extends BaseActivity {
+
+    @Inject
+    RoomService mRoomService;
 
     public static ArrayList<Player> playerSelected;
 
@@ -45,13 +56,14 @@ public class PlayerSelect extends AppCompatActivity {
 
     Vector<CartePlayer> vectCarte;
 
-    public static String BUDDLE_EXTRA_LIMITE = "limite";
-    public static String BUDDLE_EXTRA_NEW = "new game";
-    public static  int LIMITE_MIN = 10;
+    public static final String BUDDLE_EXTRA_LIMITE = "limite";
+    public static final String BUDDLE_EXTRA_NEW = "new game";
+    public static int LIMITE_MIN = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
         setContentView(R.layout.activity_player_select);
 
         ButterKnife.bind(this);
@@ -70,7 +82,9 @@ public class PlayerSelect extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        checkNewPlayer();
+//        if(mPlayerDao.getAll() != null){
+//            checkNewPlayer();
+//        }
     }
 
     @OnClick(R.id.switchMode)
@@ -106,32 +120,41 @@ public class PlayerSelect extends AppCompatActivity {
     public void onClickAdd(View view){
         Intent intent = new Intent(PlayerSelect.this, EditPlayerActivity.class);
         startActivity(intent);
-        /*
-        AlertDialog.Builder alert = new AlertDialog.Builder(PlayerSelect.this);
-        View v = PlayerSelect.this.getLayoutInflater().inflate(R.layout.dialog_add_player, null);
-        alert.setView(v);
-        final EditText noms = (EditText)v.findViewById(R.id.enterNoms);
-
-        alert.setPositiveButton("Enregistrer", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-
-                Player p = new Player();
-                p.setName(noms.getText().toString());
-                System.out.println(noms.getText().toString());
-                MainActivity.allPlayers.add(p);
-                addCarte(p,true);
-            }
-        });
-
-        alert.show();*/
     }
 
     private void initGridLayout(){
         vectCarte = new Vector<>();
+        loadData();
+    }
 
-        for(final Player player : MainActivity.allPlayers) {
-            addCarte(player, false);
-        }
+    private void loadData() {
+            showLoadCircle();
+
+            mRoomService.getAllPlayer()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new DisposableMaybeObserver<List<Player>>() {
+                        @Override
+                        public void onSuccess(List<Player> players) {
+                            for (Player p : players) {
+                                if(p != null) {
+                                    addCarte(p, false);
+                                }
+                            }
+                            closeLoadCircle();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onComplete() {
+                            closeLoadCircle();
+                        }
+                    });
+
     }
 
     private void addCarte(Player player, boolean select){
@@ -168,7 +191,7 @@ public class PlayerSelect extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // End the activity
-                                MainActivity.allPlayers.remove(  carte.getPlayer() );
+//                                MainActivity.allPlayers.remove(  carte.getPlayer() );
                                 playerSelected.remove(carte.getPlayer());
                                 vectCarte.removeElement(carte);
                                 mGridLayout.removeView(v);
@@ -188,17 +211,25 @@ public class PlayerSelect extends AppCompatActivity {
     }
 
     private void checkNewPlayer() {
-        if(vectCarte.size() != MainActivity.allPlayers.size()) {
-            for (Player player : MainActivity.allPlayers) {
-                if ( !haveCard(player) ) addCarte(player,true);
-            }
-        }
+//        if(vectCarte.size() != mPlayerDao.getAll().size()) {
+//            for (Player player : mPlayerDao.getAll()) {
+//                if ( !haveCard(player) ) addCarte(player,true);
+//            }
+//        }
     }
 
     private boolean haveCard(Player player) {
         for (CartePlayer cp : vectCarte) {
-            if ( cp.getPlayer() == player) return true;
+            if ( cp.getPlayer().getId() == player.getId()) return true;
         }
         return false;
+    }
+
+    private void showLoadCircle(){
+        Log.d("ROOM","Load player");
+    }
+
+    private void closeLoadCircle(){
+        Log.d("ROOM","Load player finish");
     }
 }

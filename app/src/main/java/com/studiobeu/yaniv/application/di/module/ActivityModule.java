@@ -2,6 +2,7 @@ package com.studiobeu.yaniv.application.di.module;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 
 import com.studiobeu.yaniv.application.di.ActivityContext;
 

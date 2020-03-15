@@ -3,7 +3,12 @@ package com.studiobeu.yaniv.data.local.dao;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
+import io.reactivex.Maybe;
+import io.reactivex.Single;
 
 import com.studiobeu.yaniv.data.local.entity.Player;
 
@@ -13,20 +18,23 @@ import java.util.List;
 public interface PlayerDao {
 
     @Query("SELECT * FROM "+ Player.TABLE)
-    List<Player> getAll();
+    Maybe<List<Player>> getAll();
 
     @Query("SELECT * FROM "+ Player.TABLE +" WHERE id IN (:playerId)")
-    List<Player> loadAllByIds(Long[] playerId);
+    Maybe<List<Player>> loadAllByIds(Long[] playerId);
 
     @Query("SELECT * FROM "+ Player.TABLE +" WHERE id LIKE :playerId LIMIT 1")
-    Player findById(Long playerId);
+    Maybe<Player> findById(Long playerId);
+
+    @Query("SELECT MAX(id) FROM "+ Player.TABLE)
+    Maybe<Long> getMaxId();
 
     @Insert
-    void insert(Player player);
+    Completable insert(Player player);
 
-    @Insert
-    void insertAll(Player... players);
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    Completable insertAll(Player... players);
 
     @Delete
-    void delete(Player player);
+    Completable delete(Player player);
 }

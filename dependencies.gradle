@@ -11,5 +11,9 @@ ext.versions = [
         room                    : '2.2.4',
 
         // Injection
-        dagger                  : '2.24'
+        dagger                  : '2.24',
+
+        // Rxjava
+        rxandroid               : '2.0.1',
+        rxjava                  : '2.1.10'
 ]

@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.studiobeu.yaniv.R;
+import com.studiobeu.yaniv.data.local.entity.Player;
 import com.studiobeu.yaniv.model.Parametre;
-import com.studiobeu.yaniv.model.Player;
 
 import java.util.ArrayList;
 
@@ -41,7 +41,6 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        PlayerList.get(position).setId(position);
         holder.display(PlayerList.get(position));
     }
 
@@ -121,7 +120,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.MyViewHolder
             int indice = PlayerList.indexOf(p);
             player = p;
             score.setText(p.getCurrentScore()+"" );
-            image.setImageBitmap(p.geticon());
+//            image.setImageBitmap(p.geticon());
         }
 
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import com.studiobeu.yaniv.application.di.component.ApplicationComponent;
 import com.studiobeu.yaniv.application.di.component.DaggerApplicationComponent;
 import com.studiobeu.yaniv.application.di.module.ApplicationModule;
+import com.studiobeu.yaniv.application.di.module.RoomModule;
 
 
 /**
@@ -31,6 +32,7 @@ public class YanivApp extends Application{
      * @return the component
      */
     public ApplicationComponent getApplicationComponent() {
+        if(component==null) initDagger();
         return component;
     }
 
@@ -43,8 +45,9 @@ public class YanivApp extends Application{
         if (this.component == null) {
             this.component = DaggerApplicationComponent.builder()
                     .applicationModule(new ApplicationModule(this))
+                    .roomModule(new RoomModule(this))
                     .build();
-            component.inject(this);
+            this.component.inject(this);
         }
     }
 

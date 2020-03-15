@@ -1,14 +1,11 @@
 package com.studiobeu.yaniv.model;
 
-import android.graphics.Color;
-
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-import com.studiobeu.yaniv.R;
+import com.studiobeu.yaniv.data.local.entity.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 public class Partie {
 

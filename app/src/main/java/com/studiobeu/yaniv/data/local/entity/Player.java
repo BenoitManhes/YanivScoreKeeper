@@ -19,6 +19,7 @@ public class Player {
     public static final String CI_COLOR = "color";
 
     @PrimaryKey
+    @ColumnInfo(name = "id")
     public long id;
 
     @ColumnInfo(name = CI_NAME)
@@ -50,7 +51,20 @@ public class Player {
 
     }
 
+    public void incrementeManche(boolean win){
+        this.nbTotalManche++;
+        if(win) this.nbMancheWin++;
+    }
+
+    public void incrementePartie(boolean win){
+        this.nbTotalPartie++;
+        if(win) this.nbPartieWin++;
+    }
+
     /* ----------- getter & setter ------------ */
+
+    public long getId() { return id; }
+
     public String getName() {
         return name;
     }
