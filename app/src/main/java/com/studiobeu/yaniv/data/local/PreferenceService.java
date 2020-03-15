@@ -5,7 +5,6 @@ import android.content.SharedPreferences;
 
 import com.studiobeu.yaniv.application.di.ApplicationContext;
 
-import javax.inject.Inject;
 import javax.inject.Singleton;
 
 @Singleton
@@ -15,7 +14,6 @@ public class PreferenceService {
 
     private final SharedPreferences preferences;
 
-    @Inject
     public PreferenceService(@ApplicationContext Context context) {
         this.preferences = context.getSharedPreferences(PREF_FILE_NAME, Context.MODE_PRIVATE);
     }

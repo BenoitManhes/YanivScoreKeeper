@@ -4,9 +4,11 @@ import android.content.Context;
 
 import com.studiobeu.yaniv.application.YanivApp;
 import com.studiobeu.yaniv.application.di.module.RoomModule;
+import com.studiobeu.yaniv.data.DataManager;
 import com.studiobeu.yaniv.data.local.PreferenceService;
 import com.studiobeu.yaniv.application.di.ApplicationContext;
 import com.studiobeu.yaniv.application.di.module.ApplicationModule;
+import com.studiobeu.yaniv.data.local.RoomService;
 import com.studiobeu.yaniv.data.local.dao.PlayerDao;
 import com.studiobeu.yaniv.data.local.database.AppDataBase;
 
@@ -23,9 +25,7 @@ public interface ApplicationComponent {
     @ApplicationContext
     Context context();
 
-    PreferenceService preferenceService();
+    RoomService roomService();
 
-    AppDataBase appDataBase();
-
-    PlayerDao playerDao();
+    DataManager dataManager();
 }

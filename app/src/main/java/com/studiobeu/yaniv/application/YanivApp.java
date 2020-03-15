@@ -32,6 +32,7 @@ public class YanivApp extends Application{
      * @return the component
      */
     public ApplicationComponent getApplicationComponent() {
+        if(component==null) initDagger();
         return component;
     }
 

@@ -18,6 +18,7 @@ import java.util.List;
 
 import com.google.gson.Gson;
 import com.studiobeu.yaniv.R;
+import com.studiobeu.yaniv.ui.base.BaseActivity;
 import com.studiobeu.yaniv.ui.fragment.FragmentGrille;
 import com.studiobeu.yaniv.ui.fragment.FragmentScore;
 import com.studiobeu.yaniv.ui.fragment.FragmentStatistique;
@@ -29,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends BaseActivity {
 
     @BindView(R.id.MyTabs)
     TabLayout MyTabs;
@@ -42,6 +43,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivityComponent().inject(this);
         setContentView(R.layout.activity_game);
         ButterKnife.bind(this);
 

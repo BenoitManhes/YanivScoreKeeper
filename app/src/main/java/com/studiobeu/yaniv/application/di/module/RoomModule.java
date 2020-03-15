@@ -1,6 +1,9 @@
 package com.studiobeu.yaniv.application.di.module;
 
+import android.util.Log;
+
 import com.studiobeu.yaniv.application.YanivApp;
+import com.studiobeu.yaniv.data.local.RoomService;
 import com.studiobeu.yaniv.data.local.dao.PlayerDao;
 import com.studiobeu.yaniv.data.local.database.AppDataBase;
 
@@ -21,14 +24,14 @@ public class RoomModule {
 
     @Singleton
     @Provides
-    AppDataBase providesRoomDatabase() {
-        return this.dataBase;
+    RoomService providesRoomervice() {
+        return new RoomService(dataBase);
     }
 
     @Singleton
     @Provides
-    PlayerDao providesProductDao(AppDataBase dataBase) {
-        return dataBase.getPlayerDao();
+    PlayerDao providesPlayerDao() {
+        return this.dataBase.getPlayerDao();
     }
 
 }
