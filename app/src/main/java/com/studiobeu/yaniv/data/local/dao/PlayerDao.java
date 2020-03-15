@@ -33,8 +33,8 @@ public interface PlayerDao {
     Completable insert(Player player);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(Player... players);
+    Completable insertAll(Player... players);
 
     @Delete
-    void delete(Player player);
+    Completable delete(Player player);
 }
