@@ -1,5 +1,5 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="homecard_width">120dp</dimen>
-    <dimen name="homecard_height">84dp</dimen>
+    <dimen name="homecard_width">150dp</dimen>
+    <dimen name="homecard_height">100dp</dimen>
 </resources>
