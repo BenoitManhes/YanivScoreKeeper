@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply from: '../dependencies.gradle'
 
 android {
@@ -34,6 +36,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation "androidx.legacy:legacy-support-v4:$versions.androidx"
     implementation "androidx.recyclerview:recyclerview:$versions.androidx"
+    implementation "androidx.percentlayout:percentlayout:$versions.androidx"
 
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.jjoe64:graphview:4.2.2'
@@ -57,4 +60,10 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
     implementation "io.reactivex.rxjava2:rxjava:$versions.rxjava"
 
+    compile "androidx.core:core-ktx:+"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+}
+repositories {
+    mavenCentral()
 }
