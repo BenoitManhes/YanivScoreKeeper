@@ -11,6 +11,7 @@
     <color name="grey">#bebebe</color>
     <color name="blanc_trans">#28ffffff</color>
 
+    <color name="rouge_carte">#af1220</color>
     <color name="rouge_fonce">#8e2828</color>
     <color name="vert_fond">#2d702d</color>
     <color name="vert_fonce">#143314</color>

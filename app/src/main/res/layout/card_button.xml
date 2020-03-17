@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/homecard_width"
+    android:layout_height="@dimen/homecard_height"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:layout_constraintDimensionRatio="H,280:395" >
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/card_top_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/card_bot_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/card_left_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/card_right_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".85" />
+
+    <ImageView
+        android:id="@+id/card_view_image_verso"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/carte_verso_02_h"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/card_text_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rect_red_radius"
+        android:textColor="@color/white"
+        android:fontFamily="@font/simplicity"
+        android:gravity="center"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMaxTextSize="28dp"
+        android:paddingEnd="9dp"
+        android:paddingStart="3dp"
+        android:paddingBottom="6dp"
+        android:maxLines="2"
+        app:layout_constraintBottom_toTopOf="@+id/card_bot_guideline"
+        app:layout_constraintEnd_toStartOf="@+id/card_right_guideline"
+        app:layout_constraintStart_toStartOf="@+id/card_left_guideline"
+        app:layout_constraintTop_toTopOf="@+id/card_top_guideline" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

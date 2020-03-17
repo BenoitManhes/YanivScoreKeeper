@@ -44,20 +44,20 @@ public class MainActivity extends BaseActivity {
         super.onStop();
     }
 
-    @OnClick(R.id.newGame)
+    @OnClick(R.id.home_menu_card_new)
     public void newGame(View view){
         Intent intent = new Intent(MainActivity.this, PlayerSelect.class);
         startActivity(intent);
     }
 
-    @OnClick(R.id.resume)
+    @OnClick(R.id.home_menu_card_resume)
     public void resumeLastGame(View view){
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
         intent.putExtra(BUDDLE_EXTRA_NEW,false);
         startActivity(intent);
     }
 
-    @OnClick(R.id.about)
+    @OnClick(R.id.home_menu_card_rules)
     public void showAbout(View view){
 
     }

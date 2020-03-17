@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Yaniv</string>
+    <string name="home_title">Yaniv</string>
+    <string name="home_button_new">Nouvelle Partie</string>
+    <string name="home_button_resume">Reprendre</string>
+    <string name="home_button_rules">Règles du Yaniv</string>
+</resources>
