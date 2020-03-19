@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 
 import androidx.appcompat.app.AlertDialog;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -81,14 +82,14 @@ public class PlayerSelect extends BaseActivity implements AdapterCardListener {
     }
 
     @Override
-    protected void onStart(){
+    protected void onStart() {
         super.onStart();
 
         mSwitch.setChecked(false);
     }
 
     @OnClick(R.id.add)
-    public void onClickAdd(View view){
+    public void onClickAdd(View view) {
         Intent intent = new Intent(PlayerSelect.this, EditPlayerActivity.class);
         startActivityForResult(intent, LAUNCH_EDIT_PLAYER_ACTIVITY);
 
@@ -99,13 +100,13 @@ public class PlayerSelect extends BaseActivity implements AdapterCardListener {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == LAUNCH_EDIT_PLAYER_ACTIVITY) {
-            if(resultCode == Activity.RESULT_OK){
+            if (resultCode == Activity.RESULT_OK) {
                 try {
                     Player newPLayer = (Player) data
                             .getSerializableExtra(EditPlayerActivity.BUDDLE_EXTRA_PLAYER_CREATED);
                     allPlayers.add(newPLayer);
-                    mCardPlayerAdapter.addPlayer(newPLayer,true);
-                }catch (Exception e){
+                    mCardPlayerAdapter.addPlayer(newPLayer, true);
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
@@ -113,36 +114,39 @@ public class PlayerSelect extends BaseActivity implements AdapterCardListener {
     }
 
     @OnClick(R.id.switchMode)
-    public void onSwitch(View view){
-        if (mSwitch.isChecked()){
+    public void onSwitch(View view) {
+        if (mSwitch.isChecked()) {
             mTextView.setEnabled(false);
             mEditText.setEnabled(false);
-        }else{
+        } else {
             mTextView.setEnabled(true);
             mEditText.setEnabled(true);
         }
     }
 
     @OnClick(R.id.start)
-    public void onClickStart(View view){
+    public void onClickStart(View view) {
         int limite = (int) Integer.parseInt(mEditText.getText().toString());
-        if(limite<LIMITE_MIN && mSwitch.isChecked()){
-            Toast.makeText(this, "Entrez un limite superieur à "+LIMITE_MIN, Toast.LENGTH_SHORT).show();
-        }else{
-        if(playerSelected.size()>1) {
-            Intent intent = new Intent(PlayerSelect.this, GameActivity.class);
-            if(mSwitch.isChecked()) intent.putExtra(BUDDLE_EXTRA_LIMITE,-1);
-            else intent.putExtra(BUDDLE_EXTRA_LIMITE,limite);
-            intent.putExtra(BUDDLE_EXTRA_NEW,true);
-            startActivity(intent);
-        }else{
-            Toast.makeText(this, "Selectioner au moins 2 joueurs : "+playerSelected.size(), Toast.LENGTH_SHORT).show();
-        }}
+        playerSelected.clear();
+        playerSelected =(ArrayList<Player>) mCardPlayerAdapter.getPlayerSelected().clone();
+        if (limite < LIMITE_MIN && mSwitch.isChecked()) {
+            Toast.makeText(this, "Entrez un limite superieur à " + LIMITE_MIN, Toast.LENGTH_SHORT).show();
+        } else {
+            if (playerSelected.size() > 1) {
+                Intent intent = new Intent(PlayerSelect.this, GameActivity.class);
+                if (mSwitch.isChecked()) intent.putExtra(BUDDLE_EXTRA_LIMITE, -1);
+                else intent.putExtra(BUDDLE_EXTRA_LIMITE, limite);
+                intent.putExtra(BUDDLE_EXTRA_NEW, true);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, "Selectioner au moins 2 joueurs : " + playerSelected.size(), Toast.LENGTH_SHORT).show();
+            }
+        }
 
     }
 
-    private void initGridLayout(){
-        mCardPlayerAdapter = new CardPlayerAdapter(this,this, allPlayers);
+    private void initGridLayout() {
+        mCardPlayerAdapter = new CardPlayerAdapter(this, this, allPlayers);
         mGridView.setAdapter(mCardPlayerAdapter);
 
     }
@@ -151,39 +155,39 @@ public class PlayerSelect extends BaseActivity implements AdapterCardListener {
      * Load all player from database (Room)
      */
     private void loadData() {
-            showLoadCircle();
-            allPlayers.clear();
+        showLoadCircle();
+        allPlayers.clear();
 
-            mRoomService.getAllPlayer()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new DisposableMaybeObserver<List<Player>>() {
-                        @Override
-                        public void onSuccess(List<Player> players) {
-                            for (Player p : players) {
-                                if(p != null) {
-                                    allPlayers.add(p);
-                                }
-                                mCardPlayerAdapter.setData(allPlayers);
+        mRoomService.getAllPlayer()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new DisposableMaybeObserver<List<Player>>() {
+                    @Override
+                    public void onSuccess(List<Player> players) {
+                        for (Player p : players) {
+                            if (p != null) {
+                                allPlayers.add(p);
                             }
+                            mCardPlayerAdapter.setData(allPlayers);
                         }
+                    }
 
-                        @Override
-                        public void onError(Throwable e) {
-                            e.printStackTrace();
-                        }
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
 
-                        @Override
-                        public void onComplete() {
-                            closeLoadCircle();
-                        }
-                    });
+                    @Override
+                    public void onComplete() {
+                        closeLoadCircle();
+                    }
+                });
 
     }
 
     private boolean haveCard(Player player) {
         for (CartePlayer cp : vectCarte) {
-            if ( cp.getPlayer().getId() == player.getId()) return true;
+            if (cp.getPlayer().getId() == player.getId()) return true;
         }
         return false;
     }
@@ -198,9 +202,10 @@ public class PlayerSelect extends BaseActivity implements AdapterCardListener {
                         deletePlayer(player);
                     }
                 })
-                .setNegativeButton("Annuler",new DialogInterface.OnClickListener() {
+                .setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog, int which) { }
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
                 })
                 .setCancelable(true)
                 .create()
@@ -210,10 +215,11 @@ public class PlayerSelect extends BaseActivity implements AdapterCardListener {
     /**
      * Delete a player from database
      * If success delete the corresponding card
+     *
      * @param player Player to delete
      */
     @SuppressLint("CheckResult")
-    public void deletePlayer(Player player){
+    public void deletePlayer(Player player) {
         mRoomService.deletePlayer(player)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -227,12 +233,12 @@ public class PlayerSelect extends BaseActivity implements AdapterCardListener {
                 });
     }
 
-    private void showLoadCircle(){
-        Log.d("ROOM","Load player");
+    private void showLoadCircle() {
+        Log.d("ROOM", "Load player");
     }
 
-    private void closeLoadCircle(){
-        Log.d("ROOM","Load player finish");
+    private void closeLoadCircle() {
+        Log.d("ROOM", "Load player finish");
     }
 
 }
