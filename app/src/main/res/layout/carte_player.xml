@@ -1,31 +1,50 @@
-<RelativeLayout
-    android:layout_width="100dp"
-    android:layout_height="160dp"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="5dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:ignore="MissingConstraints">
 
     <ImageView
-        android:id="@+id/fond_carte"
+        android:id="@+id/back_player_card"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"/>
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:cropToPadding="false"
+        android:scaleType="fitCenter"
+        android:src="@drawable/carte2" />
 
     <ImageView
-        android:id="@+id/image_carte"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true" />
+        android:id="@+id/image_player_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="H,1:1"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:src="@drawable/bob"
+        app:layout_constraintBottom_toBottomOf="@+id/back_player_card"
+        app:layout_constraintEnd_toEndOf="@+id/back_player_card"
+        app:layout_constraintStart_toStartOf="@+id/back_player_card"
+        app:layout_constraintTop_toTopOf="@+id/back_player_card"
+        app:layout_constraintWidth_percent="0.75"
+        app:srcCompat="@drawable/bob" />
 
     <TextView
-        android:id="@+id/carte_textView"
-        android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:id="@+id/pseudo_player_card"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintWidth_percent="0.9"
+        app:layout_constraintHeight_percent="0.2"
         android:layout_alignParentBottom="true"
-        android:layout_marginLeft="5dp"
-        android:gravity="center_vertical"
-        android:textSize="16dp"
+        android:gravity="top|center_horizontal"
+        android:fontFamily="@font/simplicity"
+        android:text="Pseudo"
         android:textColor="@color/white"
-        android:text="Pseudo" />
+        android:maxLines="1"
+        android:autoSizeTextType="uniform"
+        app:layout_constraintTop_toBottomOf="@+id/back_player_card"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

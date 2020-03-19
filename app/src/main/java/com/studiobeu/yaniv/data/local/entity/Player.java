@@ -2,12 +2,14 @@ package com.studiobeu.yaniv.data.local.entity;
 
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "player")
-public class Player {
+public class Player implements Serializable {
 
     public static final String TABLE = "player";
     public static final String CI_NAME = "name";

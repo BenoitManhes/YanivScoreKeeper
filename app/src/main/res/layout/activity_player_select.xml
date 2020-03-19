@@ -20,23 +20,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
             android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="1"
             android:background="@color/vert_fonce"
             android:gravity="center_vertical"
-            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <Switch
                 android:id="@+id/switchMode"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:showText="true"
-                android:layout_marginLeft="20dp"
                 android:text="Mode"
                 android:textOff="Normal"
-                android:textOn="Infinie"/>
+                android:textOn="Infinie" />
 
             <TextView
                 android:id="@+id/textLimite"
@@ -50,58 +50,51 @@
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
                 android:focusedByDefault="false"
-                android:text="200"
-                android:inputType="number"/>
+                android:inputType="number"
+                android:text="200" />
 
         </LinearLayout>
-        <ScrollView
+
+        <GridView
+            android:id="@+id/player_select_gridLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="9">
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="10dp"
+            android:layout_weight="9"
+            android:columnWidth="100dp"
+            android:foregroundGravity="center_horizontal"
+            android:horizontalSpacing="20dp"
+            android:numColumns="auto_fit"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="10dp" />
 
-            <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/gridLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_gravity="center_horizontal"
-                android:foregroundGravity="center_horizontal"
-                android:columnCount="3"
-                android:layout_marginHorizontal="10dp" >
-            </GridLayout>
-
-        </ScrollView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/add"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/rouge_fonce"
-            android:text="Add player" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/start"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@color/rouge_fonce"
-            android:text="Start" />
+            <Button
+                android:id="@+id/add"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/rouge_fonce"
+                android:text="Add player" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/start"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@color/rouge_fonce"
+                android:text="Start" />
 
-
-
-
-
+        </LinearLayout>
 
 
     </LinearLayout>

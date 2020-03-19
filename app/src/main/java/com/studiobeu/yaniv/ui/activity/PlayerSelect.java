@@ -1,5 +1,7 @@
 package com.studiobeu.yaniv.ui.activity;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,10 +10,8 @@ import androidx.appcompat.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.GridLayout;
-import android.widget.ImageView;
+import android.widget.GridView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,7 +20,10 @@ import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.data.local.RoomService;
 import com.studiobeu.yaniv.data.local.entity.Player;
 import com.studiobeu.yaniv.model.CartePlayer;
+import com.studiobeu.yaniv.ui.adapter.CardPlayerAdapter;
 import com.studiobeu.yaniv.ui.base.BaseActivity;
+import com.studiobeu.yaniv.ui.contrat.AdapterCardListener;
+import com.studiobeu.yaniv.ui.view.CardPlayerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,15 +38,15 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableMaybeObserver;
 import io.reactivex.schedulers.Schedulers;
 
-public class PlayerSelect extends BaseActivity {
+public class PlayerSelect extends BaseActivity implements AdapterCardListener {
 
     @Inject
     RoomService mRoomService;
 
     public static ArrayList<Player> playerSelected;
 
-    @BindView(R.id.gridLayout)
-    GridLayout mGridLayout;
+    @BindView(R.id.player_select_gridLayout)
+    GridView mGridView;
 
     @BindView(R.id.switchMode)
     Switch mSwitch;
@@ -56,8 +59,12 @@ public class PlayerSelect extends BaseActivity {
 
     Vector<CartePlayer> vectCarte;
 
+    private CardPlayerAdapter mCardPlayerAdapter;
+    private final ArrayList<Player> allPlayers = new ArrayList<Player>();
+
     public static final String BUDDLE_EXTRA_LIMITE = "limite";
     public static final String BUDDLE_EXTRA_NEW = "new game";
+    private static final int LAUNCH_EDIT_PLAYER_ACTIVITY = 1;
     public static int LIMITE_MIN = 10;
 
     @Override
@@ -69,6 +76,8 @@ public class PlayerSelect extends BaseActivity {
         ButterKnife.bind(this);
 
         playerSelected = new ArrayList<>();
+        initGridLayout();
+        loadData();
     }
 
     @Override
@@ -76,15 +85,31 @@ public class PlayerSelect extends BaseActivity {
         super.onStart();
 
         mSwitch.setChecked(false);
-        initGridLayout();
+    }
+
+    @OnClick(R.id.add)
+    public void onClickAdd(View view){
+        Intent intent = new Intent(PlayerSelect.this, EditPlayerActivity.class);
+        startActivityForResult(intent, LAUNCH_EDIT_PLAYER_ACTIVITY);
+
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-//        if(mPlayerDao.getAll() != null){
-//            checkNewPlayer();
-//        }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == LAUNCH_EDIT_PLAYER_ACTIVITY) {
+            if(resultCode == Activity.RESULT_OK){
+                try {
+                    Player newPLayer = (Player) data
+                            .getSerializableExtra(EditPlayerActivity.BUDDLE_EXTRA_PLAYER_CREATED);
+                    allPlayers.add(newPLayer);
+                    mCardPlayerAdapter.addPlayer(newPLayer,true);
+                }catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     @OnClick(R.id.switchMode)
@@ -116,19 +141,18 @@ public class PlayerSelect extends BaseActivity {
 
     }
 
-    @OnClick(R.id.add)
-    public void onClickAdd(View view){
-        Intent intent = new Intent(PlayerSelect.this, EditPlayerActivity.class);
-        startActivity(intent);
-    }
-
     private void initGridLayout(){
-        vectCarte = new Vector<>();
-        loadData();
+        mCardPlayerAdapter = new CardPlayerAdapter(this,this, allPlayers);
+        mGridView.setAdapter(mCardPlayerAdapter);
+
     }
 
+    /**
+     * Load all player from database (Room)
+     */
     private void loadData() {
             showLoadCircle();
+            allPlayers.clear();
 
             mRoomService.getAllPlayer()
                     .subscribeOn(Schedulers.io())
@@ -138,10 +162,10 @@ public class PlayerSelect extends BaseActivity {
                         public void onSuccess(List<Player> players) {
                             for (Player p : players) {
                                 if(p != null) {
-                                    addCarte(p, false);
+                                    allPlayers.add(p);
                                 }
+                                mCardPlayerAdapter.setData(allPlayers);
                             }
-                            closeLoadCircle();
                         }
 
                         @Override
@@ -157,72 +181,50 @@ public class PlayerSelect extends BaseActivity {
 
     }
 
-    private void addCarte(Player player, boolean select){
-        final View v = PlayerSelect.this.getLayoutInflater().inflate(R.layout.carte_player, null);
-        v.setLayoutParams(new ViewGroup.LayoutParams(200, 300));
-
-        TextView nom = ((TextView) v.findViewById(R.id.carte_textView));
-        ImageView fond = ((ImageView) v.findViewById(R.id.fond_carte));
-        ImageView profil = ((ImageView) v.findViewById(R.id.image_carte));
-        nom.setText(player.getName());
-
-        final CartePlayer carte = new CartePlayer(player, fond, profil );
-        if(select) carte.click();
-        vectCarte.add(carte);
-
-        v.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                carte.click();
-
-            }
-        });
-
-        v.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View view) {
-
-                Context context = view.getContext();
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(context);
-
-                builder.setMessage("Supprimer le joueur ?")
-                        .setPositiveButton("Supprimer", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // End the activity
-//                                MainActivity.allPlayers.remove(  carte.getPlayer() );
-                                playerSelected.remove(carte.getPlayer());
-                                vectCarte.removeElement(carte);
-                                mGridLayout.removeView(v);
-                            }
-                        })
-                        .setNegativeButton("Annuler",new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) { }
-                            })
-                        .setCancelable(true)
-                        .create()
-                        .show();
-            return true;
-            }
-        });
-        mGridLayout.addView(v,mGridLayout.getChildCount());
-    }
-
-    private void checkNewPlayer() {
-//        if(vectCarte.size() != mPlayerDao.getAll().size()) {
-//            for (Player player : mPlayerDao.getAll()) {
-//                if ( !haveCard(player) ) addCarte(player,true);
-//            }
-//        }
-    }
-
     private boolean haveCard(Player player) {
         for (CartePlayer cp : vectCarte) {
             if ( cp.getPlayer().getId() == player.getId()) return true;
         }
         return false;
+    }
+
+    @Override
+    public void onLongClikPlayer(Player player) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Supprimer le joueur ?")
+                .setPositiveButton("Supprimer", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deletePlayer(player);
+                    }
+                })
+                .setNegativeButton("Annuler",new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) { }
+                })
+                .setCancelable(true)
+                .create()
+                .show();
+    }
+
+    /**
+     * Delete a player from database
+     * If success delete the corresponding card
+     * @param player Player to delete
+     */
+    @SuppressLint("CheckResult")
+    public void deletePlayer(Player player){
+        mRoomService.deletePlayer(player)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(() -> {  // onComplete()
+                    playerSelected.remove(player);
+                    allPlayers.remove(player);
+                    mCardPlayerAdapter.deletePlayer(player);
+                }, throwable -> {   // onError()
+                    Log.d("ROOM", "Error during player deletion");// handle error
+                    throwable.printStackTrace();
+                });
     }
 
     private void showLoadCircle(){
@@ -232,4 +234,5 @@ public class PlayerSelect extends BaseActivity {
     private void closeLoadCircle(){
         Log.d("ROOM","Load player finish");
     }
+
 }

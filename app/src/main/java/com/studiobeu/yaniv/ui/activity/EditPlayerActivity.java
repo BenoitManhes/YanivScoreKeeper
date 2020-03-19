@@ -57,6 +57,8 @@ public class EditPlayerActivity extends BaseActivity {
     private Bitmap bitmap;
     private int color;
 
+    public static final String BUDDLE_EXTRA_PLAYER_CREATED = "player created";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +108,6 @@ public class EditPlayerActivity extends BaseActivity {
                     public void onSuccess(Long id) {
                         Log.d("ROOM","get id success");
                         createPlayer(id + 1);
-                        finish();
                     }
 
                     @Override
@@ -119,7 +120,6 @@ public class EditPlayerActivity extends BaseActivity {
                     public void onComplete() {
                         Log.d("ROOM","get id complete");
                         createPlayer(0);
-                        finish();
                     }
 
                 });
@@ -168,7 +168,11 @@ public class EditPlayerActivity extends BaseActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(() -> {  // onComplete()
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra(BUDDLE_EXTRA_PLAYER_CREATED,currentPlayer);
+                    setResult(Activity.RESULT_OK,returnIntent);
                     finish();
+
                 }, throwable -> {   // onError()
                     Log.d("ROOM", "Error during player creation");// handle error
                     throwable.printStackTrace();

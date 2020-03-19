@@ -32,6 +32,8 @@ public class RoomService {
 
     public Completable createPlayer(Player player){ return this.playerDao.insert(player);}
 
+    public Completable deletePlayer(Player player){ return this.playerDao.delete(player);}
+
     public Maybe<Long> getNewPlayerId(){
         return this.playerDao.getMaxId();
     }
