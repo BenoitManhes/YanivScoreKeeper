@@ -5,4 +5,5 @@
     <string name="home_button_new">Nouvelle Partie</string>
     <string name="home_button_resume">Reprendre</string>
     <string name="home_button_rules">Règles du Yaniv</string>
+    <string name="default_error_message">Une erreur est survenue.</string>
 </resources>

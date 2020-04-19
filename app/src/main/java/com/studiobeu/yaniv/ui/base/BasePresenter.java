@@ -1,40 +1,47 @@
 package com.studiobeu.yaniv.ui.base;
 
-/**
- * Base class that implements the Presenter interface and provides a base implementation for
- * attachView() and detachView(). It also handles keeping a reference to the mvpView that
- * can be accessed from the children classes by calling getMvpView().
- */
-public class BasePresenter<T extends MvpView> implements Presenter<T> {
+import android.content.Context;
 
-    private T mMvpView;
+import com.studiobeu.yaniv.application.di.ActivityContext;
+import com.studiobeu.yaniv.data.DataManager;
 
-    @Override
-    public void attachView(T mvpView) {
-        mMvpView = mvpView;
+public abstract class BasePresenter<V extends BaseContract.View> implements BaseContract.Presenter<V>{
+
+//    private final SchedulerProvider mSchedulerProvider;
+//    private final CompositeDisposable mCompositeDisposable;
+    protected final Context mContext;
+    protected final DataManager mDataManager;
+
+    protected V mView;
+
+    public BasePresenter(@ActivityContext Context context, DataManager dataManager) {
+        mContext = context;
+        mDataManager = dataManager;
     }
 
     @Override
-    public void detachView() {
-        mMvpView = null;
+    public void onAttach(V view) {
+        this.mView = view;
     }
 
-    public boolean isViewAttached() {
-        return mMvpView != null;
+    @Override
+    public void onDetach() {
+//        mCompositeDisposable.clear();
+        mView = null;
     }
 
-    public T getMvpView() {
-        return mMvpView;
+    protected boolean isViewAttached() {
+        return mView != null;
     }
 
-    public void checkViewAttached() {
-        if (!isViewAttached()) throw new MvpViewNotAttachedException();
+    protected V getView(){
+        return mView;
     }
+//
+//    protected SchedulerProvider getSchedulerProvider(){
+//        return mSchedulerProvider;
+//    }
+//
+//    protected CompositeDisposable getCompositeDisposable() {return mCompositeDisposable; }
 
-    public static class MvpViewNotAttachedException extends RuntimeException {
-        public MvpViewNotAttachedException() {
-            super("Please call Presenter.attachView(MvpView) before" +
-                    " requesting data to the Presenter");
-        }
-    }
 }

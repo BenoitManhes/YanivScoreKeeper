@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.data.local.entity.Player;
-import com.studiobeu.yaniv.model.Parametre;
+import com.studiobeu.yaniv.data.model.Parametre;
 
 import java.util.ArrayList;
 
@@ -120,7 +120,7 @@ public class ScoreAdapter extends RecyclerView.Adapter<ScoreAdapter.MyViewHolder
             int indice = PlayerList.indexOf(p);
             player = p;
             score.setText(p.getCurrentScore()+"" );
-//            image.setImageBitmap(p.geticon());
+            image.setImageResource(R.drawable.bob);
         }
 
 

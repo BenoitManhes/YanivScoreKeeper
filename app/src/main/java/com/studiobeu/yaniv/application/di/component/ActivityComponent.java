@@ -1,12 +1,13 @@
 package com.studiobeu.yaniv.application.di.component;
 
-import com.studiobeu.yaniv.ui.activity.EditPlayerActivity;
-import com.studiobeu.yaniv.ui.activity.GameActivity;
-import com.studiobeu.yaniv.ui.activity.MainActivity;
-import com.studiobeu.yaniv.ui.activity.PlayerSelect;
-import com.studiobeu.yaniv.ui.activity.YanivActivity;
+import com.studiobeu.yaniv.ui.main.activity.EditPlayerActivity;
+import com.studiobeu.yaniv.ui.main.activity.GameActivity;
+import com.studiobeu.yaniv.ui.main.activity.MainActivity;
+import com.studiobeu.yaniv.ui.main.activity.PlayerSelect;
+import com.studiobeu.yaniv.ui.main.activity.YanivActivity;
 import com.studiobeu.yaniv.application.di.PerActivity;
 import com.studiobeu.yaniv.application.di.module.ActivityModule;
+import com.studiobeu.yaniv.ui.main.home.HomeActivity;
 
 import dagger.Component;
 
@@ -18,6 +19,7 @@ import dagger.Component;
 @Component(dependencies = ApplicationComponent.class, modules = ActivityModule.class)
 public interface ActivityComponent {
 
+    void inject(HomeActivity homeActivity);
     void inject(EditPlayerActivity editPlayerActivity);
     void inject(GameActivity gameActivity);
     void inject(MainActivity mainActivity);

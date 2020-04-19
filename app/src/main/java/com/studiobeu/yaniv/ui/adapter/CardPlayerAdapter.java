@@ -6,8 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import com.studiobeu.yaniv.data.local.entity.Player;
-import com.studiobeu.yaniv.ui.contrat.AdapterCardListener;
-import com.studiobeu.yaniv.ui.view.CardPlayerView;
+import com.studiobeu.yaniv.ui.custom.listener.AdapterCardListener;
+import com.studiobeu.yaniv.ui.custom.view.CardPlayerView;
 
 import java.util.ArrayList;
 

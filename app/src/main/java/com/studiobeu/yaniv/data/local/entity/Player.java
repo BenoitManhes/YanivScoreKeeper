@@ -2,6 +2,8 @@ package com.studiobeu.yaniv.data.local.entity;
 
 import android.graphics.Bitmap;
 
+import com.studiobeu.yaniv.R;
+
 import java.io.Serializable;
 
 import androidx.room.ColumnInfo;
@@ -39,8 +41,7 @@ public class Player implements Serializable {
     @ColumnInfo(name = CI_NB_TOTAL_PARTIE_WIN)
     private int nbPartieWin;
 
-//    @ColumnInfo(name = CI_ICON)
-//    private Bitmap icon;
+    private int resAvatarId;
 
     @ColumnInfo(name = CI_COLOR)
     private int color;
@@ -50,7 +51,12 @@ public class Player implements Serializable {
     public Player(long id){
         this.id = id;
         name = "";
-
+        nbTotalManche = 0;
+        nbMancheWin = 0;
+        nbTotalPartie = 0;
+        nbPartieWin = 0;
+        resAvatarId = R.drawable.bob;
+        color = R.color.white;
     }
 
     public void incrementeManche(boolean win){
@@ -107,13 +113,9 @@ public class Player implements Serializable {
         this.nbPartieWin = nbPartieWin;
     }
 
-//    public Bitmap getIcon() {
-//        return icon;
-//    }
-//
-//    public void setIcon(Bitmap icon) {
-//        this.icon = icon;
-//    }
+    public int getResAvatarId() { return resAvatarId;}
+
+    public void setResAvatarId(int resAvatarId) {this.resAvatarId = resAvatarId;}
 
     public int getColor() {
         return color;

@@ -7,7 +7,7 @@
     android:background="@color/vert_fond"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context=".ui.activity.PlayerSelect">
+    tools:context=".ui.main.activity.PlayerSelect">
 
 
     <LinearLayout
