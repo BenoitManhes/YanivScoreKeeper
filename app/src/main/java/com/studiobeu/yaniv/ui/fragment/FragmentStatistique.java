@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.ui.main.fragment;
+package com.studiobeu.yaniv.ui.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import com.jjoe64.graphview.LegendRenderer;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.studiobeu.yaniv.R;
-import com.studiobeu.yaniv.ui.main.activity.GameActivity;
+import com.studiobeu.yaniv.ui.activity.GameActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

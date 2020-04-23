@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.studiobeu.yaniv.application.di.ActivityContext;
+import com.studiobeu.yaniv.data.DataManager;
+import com.studiobeu.yaniv.data.DataManager_Factory;
 import com.studiobeu.yaniv.ui.main.home.HomeContract;
 import com.studiobeu.yaniv.ui.main.home.HomePresenter;
 import com.studiobeu.yaniv.utils.rx.SchedulerProvider;
@@ -31,5 +33,4 @@ public class FragmentModule {
     Context provideContext() {
         return mActivity;
     }
-
 }

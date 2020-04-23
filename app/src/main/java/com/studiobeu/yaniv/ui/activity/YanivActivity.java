@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.ui.main.activity;
+package com.studiobeu.yaniv.ui.activity;
 
 import android.os.Bundle;
 import android.view.View;

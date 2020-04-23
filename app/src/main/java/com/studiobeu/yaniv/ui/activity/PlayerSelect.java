@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.ui.main.activity;
+package com.studiobeu.yaniv.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

@@ -1,6 +1,7 @@
 package com.studiobeu.yaniv.ui.main.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,13 +10,17 @@ import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.application.di.component.FragmentComponent;
 import com.studiobeu.yaniv.ui.base.BaseFragment;
 import com.studiobeu.yaniv.ui.custom.view.CardButtonView;
+import com.studiobeu.yaniv.ui.main.MainActivity;
 
 import javax.inject.Inject;
+
 import androidx.annotation.Nullable;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 
 public class HomeFragment extends BaseFragment<HomeContract.Presenter> implements HomeContract.View {
+
 
     @BindView(R.id.home_menu_card_new)
     CardButtonView mCardNew;
@@ -26,10 +31,11 @@ public class HomeFragment extends BaseFragment<HomeContract.Presenter> implement
     @BindView(R.id.home_menu_card_rules)
     CardButtonView mCardRules;
 
-    private View inflatedView;
-
     @Inject
     HomePresenter mPresenter;
+
+    private View inflatedView;
+
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -47,29 +53,33 @@ public class HomeFragment extends BaseFragment<HomeContract.Presenter> implement
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         this.inflatedView = inflater.inflate(R.layout.fragment_home, container, false);
+        ButterKnife.bind(this, inflatedView);
 
         initViews();
-        setupListeners();
 
         FragmentComponent component = getFragmentComponent();
         if (component != null) {
             component.inject(this);
             mPresenter.onAttach(this);
 
-//            mPresenter.loadItems(false);
+            setupListeners();
         }
 
         return inflatedView;
     }
 
-    /** Set up view's elements listeners */
+    /**
+     * Set up view's elements listeners
+     */
     private void setupListeners() {
         mCardNew.setOnClickListener(v -> mPresenter.onClickNew());
         mCardResume.setOnClickListener(v -> mPresenter.onClickResume());
         mCardRules.setOnClickListener(v -> mPresenter.onClickRules());
     }
 
-    /** initialize the fragment view **/
+    /**
+     * initialize the fragment view
+     **/
     @Override
     protected void initViews() {
         //initialize view here
@@ -77,7 +87,7 @@ public class HomeFragment extends BaseFragment<HomeContract.Presenter> implement
 
     @Override
     public void setPresenter(HomeContract.Presenter presenter) {
-        this.mPresenter = (HomePresenter)presenter;
+        this.mPresenter = (HomePresenter) presenter;
     }
 
     @Override
@@ -86,19 +96,26 @@ public class HomeFragment extends BaseFragment<HomeContract.Presenter> implement
         super.onDestroy();
     }
 
-    /** launch new game, show player selection screen */
+    /**
+     * launch new game, show player selection screen
+     */
     @Override
     public void showPlayerSelection() {
-
+        if (getActivity() instanceof MainActivity) {
+            ((MainActivity) getActivity()).setPlayerSelectionFragment();
+        }
     }
 
-    /** resume game, show games selection screen */
+    /**
+     * resume game, show games selection screen
+     */
     @Override
     public void showGameSelection() {
-
     }
 
-    /** show Yaniv rules screen */
+    /**
+     * show Yaniv rules screen
+     */
     @Override
     public void showRules() {
 

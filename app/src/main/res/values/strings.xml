@@ -8,4 +8,6 @@
     <string name="home_button_resume">Resume</string>
     <string name="home_button_rules">Yaniv Rules</string>
     <string name="default_error_message">Error! Please try again.</string>
+    <string name="player_selection_limit_message">Input a limit greater than</string>
+    <string name="player_selection_player_message">Select at least 2 players</string>
 </resources>

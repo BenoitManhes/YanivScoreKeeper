@@ -1,4 +1,4 @@
-package com.studiobeu.yaniv.ui.main.activity;
+package com.studiobeu.yaniv.ui.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,9 +18,9 @@ import java.util.List;
 import com.google.gson.Gson;
 import com.studiobeu.yaniv.R;
 import com.studiobeu.yaniv.ui.base.BaseActivity;
-import com.studiobeu.yaniv.ui.main.fragment.FragmentGrille;
-import com.studiobeu.yaniv.ui.main.fragment.FragmentScore;
-import com.studiobeu.yaniv.ui.main.fragment.FragmentStatistique;
+import com.studiobeu.yaniv.ui.fragment.FragmentGrille;
+import com.studiobeu.yaniv.ui.fragment.FragmentScore;
+import com.studiobeu.yaniv.ui.fragment.FragmentStatistique;
 import com.studiobeu.yaniv.data.model.Partie;
 
 import java.util.ArrayList;

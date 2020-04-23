@@ -10,18 +10,17 @@
         android:roundIcon="@mipmap/icone_yanive_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ui.main.home.HomeActivity">
+        <activity android:name=".ui.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.activity.MainActivity"/>
-        <activity android:name=".ui.main.activity.PlayerSelect" />
-        <activity android:name=".ui.main.activity.GameActivity" />
-        <activity android:name=".ui.main.activity.YanivActivity" />
-        <activity android:name=".ui.main.activity.EditPlayerActivity" />
+        <activity android:name=".ui.activity.PlayerSelect" />
+        <activity android:name=".ui.activity.GameActivity" />
+        <activity android:name=".ui.activity.YanivActivity" />
+        <activity android:name=".ui.activity.EditPlayerActivity" />
     </application>
 
 </manifest>
